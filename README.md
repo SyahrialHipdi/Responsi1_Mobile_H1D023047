@@ -10,8 +10,6 @@ Shift Baru : E
 # Demo Aplikasi
 
 
-https://github.com/user-attachments/assets/57f3057e-dd32-404a-9d79-0d0028c103d6
-
 
 
 https://github.com/user-attachments/assets/407bf25c-f794-4fe9-aea8-dcb162b57851
