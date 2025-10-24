@@ -1,0 +1,19 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Responsi1MobileH1D023047" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    </style>
+
+    <!-- Tema utama aplikasi kamu -->
+    <style name="Theme.Responsi1MobileH1D023047" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Atur warna utama di sini -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+    </style>
+
+    <!-- Tema untuk BottomSheetDialogFragment -->
+    <style name="ThemeOverlay_App_BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+</resources>
