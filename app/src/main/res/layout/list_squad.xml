@@ -1,49 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="4dp">
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="6dp"
-        android:paddingTop="12dp"
-        android:paddingRight="6dp"
-        android:paddingBottom="12dp">
+        android:layout_height="wrap_content"
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/tvName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="Player Name"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.5"/>
+            app:layout_constraintWidth_percent="0.5" />
 
         <TextView
             android:id="@+id/tvPosition"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="Position"
             android:textSize="14sp"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvName"
-            app:layout_constraintWidth_percent="0.5"/>
+            app:layout_constraintWidth_percent="0.5" />
 
         <TextView
             android:id="@+id/tvYear"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="4dp"
+            android:text="Nationality"
             android:textAlignment="textEnd"
-            android:textColor="@color/colorPrimary"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@id/tvPosition"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvName"
-            app:layout_constraintWidth_percent="0.2"/>
+            app:layout_constraintWidth_percent="0.2" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

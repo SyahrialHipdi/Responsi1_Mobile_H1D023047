@@ -1,57 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:orientation="vertical"
     tools:context=".ClubActivity">
 
+    <!-- Header Section (Tidak Bisa Discroll) -->
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/white">
 
+        <!-- Gambar Header - Tidak ada space di atas -->
+        <ImageView
+            android:id="@+id/ivClubLogo"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:src="@drawable/cremonese" />
+
+        <!-- Judul Club - Tidak bisa discroll -->
         <TextView
             android:id="@+id/tvNamaClub"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginBottom="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Manchester City Football Club" />
-
-        <TextView
-            android:id="@+id/tvDidirikan"
-            android:textSize="16sp"
-            android:layout_marginBottom="4dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Didirikan pada tahun 1880" />
-
-        <TextView
-            android:id="@+id/tvStadion"
-            android:textSize="16sp"
-            android:layout_marginBottom="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Stadion Etihad" />
-
-        <TextView
-            android:id="@+id/tvSejarah"
-            android:textSize="15sp"
-            android:lineSpacingExtra="6dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Isi sejarah klub..." />
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="U.S Cremonese"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:background="@android:color/white"
+            tools:text="U.S Cremonese" />
 
-        <Button
-            android:id="@+id/btnBack"
-            android:text="Kembali"
-            android:layout_marginTop="24dp"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <!-- Space kosong di bawah gambar (sedikit) -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@android:color/white" />
+
     </LinearLayout>
-</ScrollView>
+
+    <!-- Konten yang Bisa Discroll (Hanya Teks Sejarah) -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="16dp"
+        android:fillViewport="true"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvSejarah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="6dp"
+                android:text="@string/sejarah_klub"
+                android:textSize="15sp"
+                tools:text="Isi sejarah klub..." />
+
+            <Button
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp"
+                android:text="Kembali" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

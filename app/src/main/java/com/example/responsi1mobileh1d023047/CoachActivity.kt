@@ -32,9 +32,9 @@ class CoachActivity : AppCompatActivity() {
         viewModel.fetchCoachData(457)
 
         // Tombol back
-        binding.btnBack.setOnClickListener {
-            finish()
-        }
+//        binding.btnBack.setOnClickListener {
+//            finish()
+//        }
     }
 
     private fun setupObservers() {

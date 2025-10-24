@@ -2,8 +2,10 @@ package com.example.responsi1mobileh1d023047.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.responsi1mobileh1d023047.data.model.Player
+import com.example.responsi1mobileh1d023047.R
 import com.example.responsi1mobileh1d023047.databinding.ListSquadBinding
 
 class SquadAdapter(
@@ -18,10 +20,26 @@ class SquadAdapter(
             binding.tvName.text = player.name
             binding.tvPosition.text = player.position
 
+            setPositionColor(player.position)
+
             // klik item -> kirim ke listener
             binding.root.setOnClickListener {
                 listener.onPlayerClick(player)
             }
+        }
+
+        private fun setPositionColor(position: String?) {
+            val color = when (position?.lowercase()) {
+                "goalkeeper", "gk" -> R.color.position_goalkeeper
+                "defence", "centre-back", "right-back", "left-back", "lb" -> R.color.position_defender
+                "midfield", "central midfield", "defensive midfiled", "cdm", "cam" -> R.color.position_midfielder
+                "offence", "centre-forward", "left winger", "st", "cf", "lw", "rw" -> R.color.position_attacker
+                else -> R.color.position_default
+            }
+
+            binding.cardView.setCardBackgroundColor(
+                ContextCompat.getColor(binding.root.context, color)
+            )
         }
     }
 
