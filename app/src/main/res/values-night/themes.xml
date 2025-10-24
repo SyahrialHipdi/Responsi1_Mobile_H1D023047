@@ -8,8 +8,8 @@
     <!-- Tema utama aplikasi kamu -->
     <style name="Theme.Responsi1MobileH1D023047" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Atur warna utama di sini -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorPrimary">@color/primarys</item>
+        <item name="colorSecondary">@color/secondarys</item>
     </style>
 
     <!-- Tema untuk BottomSheetDialogFragment -->

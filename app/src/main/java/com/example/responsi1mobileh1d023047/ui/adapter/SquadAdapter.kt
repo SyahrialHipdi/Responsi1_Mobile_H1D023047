@@ -2,8 +2,10 @@ package com.example.responsi1mobileh1d023047.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.responsi1mobileh1d023047.data.model.Player
+import com.example.responsi1mobileh1d023047.R
 import com.example.responsi1mobileh1d023047.databinding.ListSquadBinding
 
 class SquadAdapter(
@@ -18,11 +20,27 @@ class SquadAdapter(
             binding.tvName.text = player.name
             binding.tvPosition.text = player.position
 
+//            setPositionColor(player.position)
+
             // klik item -> kirim ke listener
             binding.root.setOnClickListener {
                 listener.onPlayerClick(player)
             }
         }
+
+//        private fun setPositionColor(position: String?) {
+//            val color = when (position?.toLowerCase()) {
+//                "goalkeeper", "gk" -> R.color.position_goalkeeper
+//                "defender", "df", "cb", "rb", "lb" -> R.color.position_defender
+//                "midfielder", "mf", "cm", "cdm", "cam" -> R.color.position_midfielder
+//                "attacker", "forward", "fw", "st", "cf", "lw", "rw" -> R.color.position_attacker
+//                else -> R.color.position_default
+//            }
+//
+//            binding.cardView.setCardBackgroundColor(
+//                ContextCompat.getColor(binding.root.context, color)
+//            )
+//        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
