@@ -52,7 +52,7 @@ class DaftarSquad : AppCompatActivity(), OnPlayerClickListener {
         }
 
         // Fetch data dari API (contoh: team ID 457)
-        viewModel.fetchSquadList(457)
+        viewModel.fetchTeamData(457)
     }
 }
 
