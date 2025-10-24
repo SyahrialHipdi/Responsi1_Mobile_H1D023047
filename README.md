@@ -6,6 +6,11 @@ Shift Baru : E
 
 # Demo Aplikasi
 
+
+https://github.com/user-attachments/assets/57f3057e-dd32-404a-9d79-0d0028c103d6
+
+
+
 # Penjelasan Alur Aplikasi
 Aplikasi ini menampilkan informasi tim sepakbola, pelatih, dan pemain secara real-time dari API Football Data. Dibangun dengan arsitektur MVVM modern yang terstruktur.
 1. Inisialisasi Aplikasi
