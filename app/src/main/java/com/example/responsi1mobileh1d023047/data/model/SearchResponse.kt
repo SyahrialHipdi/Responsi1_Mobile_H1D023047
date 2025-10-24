@@ -37,16 +37,6 @@ data class SearchResponse(
     val lastUpdated: String?
 )
 
-data class BookDoc(
-    @SerializedName("title")
-    val title: String?,
-    @SerializedName("author_name")
-    val authorName: List<String>?,
-    @SerializedName("first_publish_year")
-    val firstPublishYear: Int?,
-    @SerializedName("cover_i")
-    val coverId: Int?
-)
 
 data class Area(
     @SerializedName("id")

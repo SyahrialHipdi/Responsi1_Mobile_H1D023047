@@ -15,7 +15,7 @@ import com.example.responsi1mobileh1d023047.data.model.SearchResponse
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import com.bumptech.glide.Glide
-import com.example.responsi1mobileh1d023047.ui.CoachActivity
+import com.example.responsi1mobileh1d023047.CoachActivity
 import retrofit2.*
 import retrofit2.http.GET
 
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         binding.layoutBall.root.setOnClickListener {
             // Contoh aksi: tampilkan toast atau pindah activity
             // startActivity(Intent(this, DetailClubActivity::class.java))
-//            startActivity(Intent(this, ClubActivity::class.java))
+            startActivity(Intent(this, ClubActivity::class.java))
         }
 
         binding.layoutPerson.root.setOnClickListener {

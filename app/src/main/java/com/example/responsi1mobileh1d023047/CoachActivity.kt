@@ -1,8 +1,11 @@
-package com.example.responsi1mobileh1d023047.ui
+package com.example.responsi1mobileh1d023047
+
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
+import androidx.lifecycle.Observer
+import com.example.responsi1mobileh1d023047.data.model.Coach
 import com.example.responsi1mobileh1d023047.databinding.ActivityCoachBinding
 import com.example.responsi1mobileh1d023047.viewmodel.MainViewModel
 
@@ -16,17 +19,48 @@ class CoachActivity : AppCompatActivity() {
         binding = ActivityCoachBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.coach.observe(this) { coach ->
-            binding.tvName.text = coach.name
-            binding.tvNationality.text = coach.nationality
-            binding.tvDateOfBirth.text = coach.dateOfBirth
+        // Mendapatkan teamId dari intent
+        val teamId = intent.getIntExtra("TEAM_ID", 457)
 
-            // Gunakan placeholder jika tidak ada foto
-            Glide.with(this)
-                .load("https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png")
-                .into(binding.ivCoach)
+        if (teamId == -1) {
+            Toast.makeText(this, "Team ID tidak valid", Toast.LENGTH_SHORT).show()
+            finish()
+            return
         }
 
-        viewModel.fetchCoach(457)
+        setupObservers()
+        viewModel.fetchCoachData(457)
+
+        // Tombol back
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
+    }
+
+    private fun setupObservers() {
+        viewModel.coach.observe(this, Observer { coach ->
+            coach?.let {
+                displayCoachData(it)
+            } ?: run {
+                Toast.makeText(this, "Data pelatih tidak ditemukan", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun displayCoachData(coach: Coach) {
+        binding.apply {
+            tvCoachName.text = coach.name ?: "${coach.firstName ?: ""} ${coach.lastName ?: ""}".trim()
+            tvNationality.text = coach.nationality ?: "Tidak diketahui"
+            tvDateOfBirth.text = coach.dateOfBirth ?: "Tidak diketahui"
+
+            // Menampilkan informasi kontrak jika ada
+            coach.contract?.let { contract ->
+                tvContractStart.text = contract.start ?: "Tidak diketahui"
+                tvContractUntil.text = contract.until ?: "Tidak diketahui"
+            } ?: run {
+                tvContractStart.text = "Tidak diketahui"
+                tvContractUntil.text = "Tidak diketahui"
+            }
+        }
     }
 }

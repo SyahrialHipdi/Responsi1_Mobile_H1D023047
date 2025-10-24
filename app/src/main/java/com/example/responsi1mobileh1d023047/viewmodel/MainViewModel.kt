@@ -12,52 +12,71 @@ import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
 
-    // LiveData yang akan diamati di Activity
     private val _squadList = MutableLiveData<List<Player>>()
     val squadList: LiveData<List<Player>> get() = _squadList
 
-    private val _coach = MutableLiveData<Coach>()
-    val coach: LiveData<Coach> get() = _coach
+    private val _coach = MutableLiveData<Coach?>()
+    val coach: LiveData<Coach?> get() = _coach
 
-    // Fungsi untuk memanggil API dan mengisi data squad
-    fun fetchSquadList(teamId: Int) {
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> get() = _isLoading
+
+    private val _errorMessage = MutableLiveData<String?>()
+    val errorMessage: LiveData<String?> get() = _errorMessage
+
+    // Fungsi untuk mengambil data tim (squad dan coach sekaligus)
+    fun fetchTeamData(teamId: Int) {
         viewModelScope.launch {
+            _isLoading.value = true
+            _errorMessage.value = null
+
             try {
                 val response = RetrofitInstance.api.getTeamDetail(teamId)
                 if (response.isSuccessful) {
-                    val result = response.body()?.squad ?: emptyList()
-                    _squadList.value = result
-                    Log.d("SUCCESS_GET_SQUAD", "$result")
+                    val teamData = response.body()
+                    _squadList.value = teamData?.squad ?: emptyList()
+                    _coach.value = teamData?.coach
 
-//                    val team = response.body()
-//                    _squadList.value = team?.squad ?: emptyList()
-//                    _coach.value = team?.coach
-//                    Log.d("SUCCESS_GET_SQUAD", "Squad: ${team?.squad?.size} pemain")
-//                    Log.d("SUCCESS_GET_COACH", "Coach: ${team?.coach?.name}")
+                    Log.d("SUCCESS_GET_TEAM_DATA", "Squad: ${teamData?.squad?.size} pemain")
+                    Log.d("SUCCESS_GET_TEAM_DATA", "Coach: ${teamData?.coach?.name}")
                 } else {
+                    _errorMessage.value = "Error: ${response.code()} ${response.message()}"
                     Log.e("API_ERROR", "${response.code()} ${response.message()}")
                 }
             } catch (e: Exception) {
+                _errorMessage.value = "Network error: ${e.localizedMessage}"
                 Log.e("API_EXCEPTION", e.localizedMessage ?: "Unknown error")
+            } finally {
+                _isLoading.value = false
             }
         }
     }
 
-    fun fetchCoach(teamId: Int) {
+    // Fungsi khusus untuk mengambil data coach saja
+    fun fetchCoachData(teamId: Int) {
         viewModelScope.launch {
+            _isLoading.value = true
+            _errorMessage.value = null
+
             try {
-                val token = "307f0ad44b264729b46bcfc2bf9a0512"
-                val response = RetrofitInstance.api.getTeamDetails(teamId, token)
+                val response = RetrofitInstance.api.getTeamDetail(teamId)
                 if (response.isSuccessful) {
-                    response.body()?.let {
-                        _coach.postValue(it.coach)
-                    }
+                    _coach.value = response.body()?.coach
+                    Log.d("SUCCESS_GET_COACH", "Coach: ${response.body()?.coach?.name}")
                 } else {
-                    Log.e("API_ERROR", "Error: ${response.code()} ${response.message()}")
+                    _errorMessage.value = "Error: ${response.code()} ${response.message()}"
+                    Log.e("API_ERROR", "${response.code()} ${response.message()}")
                 }
             } catch (e: Exception) {
-                Log.e("EXCEPTION", e.toString())
+                _errorMessage.value = "Network error: ${e.localizedMessage}"
+                Log.e("API_EXCEPTION", e.localizedMessage ?: "Unknown error")
+            } finally {
+                _isLoading.value = false
             }
         }
+    }
+
+    fun clearError() {
+        _errorMessage.value = null
     }
 }
