@@ -20,7 +20,7 @@ class SquadAdapter(
             binding.tvName.text = player.name
             binding.tvPosition.text = player.position
 
-//            setPositionColor(player.position)
+            setPositionColor(player.position)
 
             // klik item -> kirim ke listener
             binding.root.setOnClickListener {
@@ -28,19 +28,19 @@ class SquadAdapter(
             }
         }
 
-//        private fun setPositionColor(position: String?) {
-//            val color = when (position?.toLowerCase()) {
-//                "goalkeeper", "gk" -> R.color.position_goalkeeper
-//                "defender", "df", "cb", "rb", "lb" -> R.color.position_defender
-//                "midfielder", "mf", "cm", "cdm", "cam" -> R.color.position_midfielder
-//                "attacker", "forward", "fw", "st", "cf", "lw", "rw" -> R.color.position_attacker
-//                else -> R.color.position_default
-//            }
-//
-//            binding.cardView.setCardBackgroundColor(
-//                ContextCompat.getColor(binding.root.context, color)
-//            )
-//        }
+        private fun setPositionColor(position: String?) {
+            val color = when (position?.lowercase()) {
+                "goalkeeper", "gk" -> R.color.position_goalkeeper
+                "defence", "centre-back", "right-back", "left-back", "lb" -> R.color.position_defender
+                "midfield", "central midfield", "defensive midfiled", "cdm", "cam" -> R.color.position_midfielder
+                "offence", "centre-forward", "left winger", "st", "cf", "lw", "rw" -> R.color.position_attacker
+                else -> R.color.position_default
+            }
+
+            binding.cardView.setCardBackgroundColor(
+                ContextCompat.getColor(binding.root.context, color)
+            )
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -20,7 +20,7 @@ class ClubActivity : AppCompatActivity() {
 
         // Isi data statis
         binding.tvNamaClub.text = "U.S. Cremonese"
-        binding.tvSejarah.text = getString(R.string.sejarah).trimIndent()
+        binding.tvSejarah.text = getString(R.string.sejarah_klub)
 
         // Tombol kembali
         binding.btnBack.setOnClickListener {

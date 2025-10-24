@@ -7,22 +7,51 @@
     android:orientation="vertical"
     tools:context=".ClubActivity">
 
-    <!-- Gambar Header (Tidak Bisa Discroll) -->
-    <ImageView
-        android:id="@+id/ivClubLogo"
+    <!-- Header Section (Tidak Bisa Discroll) -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:scaleType="fitCenter"
-        android:src="@drawable/cremonese"/>
+        android:orientation="vertical"
+        android:background="@android:color/white">
 
-    <!-- Konten yang Bisa Discroll (Hanya Teks) -->
+        <!-- Gambar Header - Tidak ada space di atas -->
+        <ImageView
+            android:id="@+id/ivClubLogo"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+            android:src="@drawable/cremonese" />
+
+        <!-- Judul Club - Tidak bisa discroll -->
+        <TextView
+            android:id="@+id/tvNamaClub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="U.S Cremonese"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:background="@android:color/white"
+            tools:text="U.S Cremonese" />
+
+        <!-- Space kosong di bawah gambar (sedikit) -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@android:color/white" />
+
+    </LinearLayout>
+
+    <!-- Konten yang Bisa Discroll (Hanya Teks Sejarah) -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:padding="16dp"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:background="@android:color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,23 +59,11 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvNamaClub"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="8dp"
-                android:text="U.S Cremonese"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:text="U.S Cremonese" />
-
-
-            <TextView
                 android:id="@+id/tvSejarah"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="6dp"
-                android:text="Isi sejarah klub..."
+                android:text="@string/sejarah_klub"
                 android:textSize="15sp"
                 tools:text="Isi sejarah klub..." />
 
